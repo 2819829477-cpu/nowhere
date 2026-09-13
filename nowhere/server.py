@@ -6753,4 +6753,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    # 按照 Render 文档要求：绑定 0.0.0.0，从 $PORT 读端口，走 SSE 协议
+    mcp.run(transport="sse", host="0.0.0.0", port=port)
